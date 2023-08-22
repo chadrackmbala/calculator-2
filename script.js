@@ -30,6 +30,14 @@ buttonsObject.forEach(b => clickBtn(b));
 
 function operation(value) {
     switch (value) {
+        case ".":
+            if(input.value.includes(".") || input.value === "") {
+                
+            } else {
+                input.value += "."
+                displayArray.push('.');
+            }
+            break;
         case "CA":
             clear()
             break;
@@ -41,7 +49,6 @@ function operation(value) {
             display.textContent = result;
             input.value = result;
         default:
-
             if (value === "×") {
                 value = "*";
             } else if (value === "÷") {
@@ -49,7 +56,12 @@ function operation(value) {
             } else {
                 value = value;
             }
-            backEndOperation.push(value);
+            
+            if(value === '.') {
+                backEndOperation.push('.');
+            } else {
+                backEndOperation.push(value);
+            }
             backEndOperationJoin = backEndOperation.join('');
             console.log(backEndOperation);
             console.log(backEndOperationJoin);
@@ -81,9 +93,6 @@ function operation(value) {
                     display.textContent = `${displayArrayJoin}`;
                     input.value = "";
                     break;
-            }
-            if(input.value.includes(".")) {
-                
             }   
             break;
     }
